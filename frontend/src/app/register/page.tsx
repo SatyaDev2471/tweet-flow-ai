@@ -17,7 +17,7 @@ export default function Register() {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", { name, email, password });
+      const res = await axios.post("https://tweet-flow-ai-production.up.railway.app/api/auth/register", { name, email, password });
       login(res.data.token, res.data.user);
     } catch (err: any) {
       setError(err.response?.data?.error || "An error occurred");

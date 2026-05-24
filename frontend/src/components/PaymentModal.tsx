@@ -49,7 +49,7 @@ export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
     setError(null);
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/payments/create-order",
+        "https://tweet-flow-ai-production.up.railway.app/api/payments/create-order",
         { plan },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -64,7 +64,7 @@ export default function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
         handler: async function (response: any) {
           try {
             await axios.post(
-              "http://localhost:5000/api/payments/verify",
+              "https://tweet-flow-ai-production.up.railway.app/api/payments/verify",
               {
                 razorpayOrderId: response.razorpay_order_id,
                 razorpayPaymentId: response.razorpay_payment_id,

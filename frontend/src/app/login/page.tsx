@@ -18,7 +18,7 @@ export default function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
+      const res = await axios.post("https://tweet-flow-ai-production.up.railway.app/api/auth/login", { email, password });
       login(res.data.token, res.data.user);
     } catch (err: any) {
       setError(err.response?.data?.error || "An error occurred");

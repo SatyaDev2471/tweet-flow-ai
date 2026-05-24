@@ -42,8 +42,8 @@ export default function Dashboard() {
     try {
       setFetching(true);
       const [tweetsRes, profileRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/tweets", { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get("http://localhost:5000/api/auth/profile", { headers: { Authorization: `Bearer ${token}` } })
+        axios.post("https://tweet-flow-ai-production.up.railway.app/api/auth/login", {}, { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get("https://tweet-flow-ai-production.up.railway.app/api/auth/profile", { headers: { Authorization: `Bearer ${token}` } })
       ]);
       setTweets(tweetsRes.data.tweets);
       
@@ -69,7 +69,7 @@ export default function Dashboard() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/tweets",
+        "https://tweet-flow-ai-production.up.railway.app/api/tweets",
         { content: newTweet },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -86,7 +86,7 @@ export default function Dashboard() {
 
   const handleDeleteTweet = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tweets/${id}`, {
+      await axios.delete(`https://tweet-flow-ai-production.up.railway.app/api/tweets/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchData();
